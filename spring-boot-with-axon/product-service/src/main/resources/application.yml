@@ -15,3 +15,6 @@ spring:
 
 server:
   port: 1980
+  error:
+    include-message: always
+    include-binding-errors: always

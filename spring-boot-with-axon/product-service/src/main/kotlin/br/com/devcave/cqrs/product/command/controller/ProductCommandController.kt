@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import java.util.UUID
+import javax.validation.Valid
 
 @RestController
 @RequestMapping("products")
@@ -19,7 +20,7 @@ class ProductCommandController(
     private val logger = LoggerFactory.getLogger(javaClass)
 
     @PostMapping
-    fun create(@RequestBody request: ProductRequest): String {
+    fun create(@Valid @RequestBody request: ProductRequest): String {
         logger.info("create, $request")
         val createProductCommand = request.toCreateProductCommand()
 

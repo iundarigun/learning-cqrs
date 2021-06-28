@@ -24,7 +24,7 @@ class ProductAggregate() {
     constructor(createProductCommand: CreateProductCommand) : this() {
         logger.info("constructor, $createProductCommand")
 
-        // validate create product command: This parts can be on request body validation ...
+        // validate create product command: This parts is on request body too. Unecessary
         if (createProductCommand.price <= BigDecimal.ZERO) {
             throw IllegalArgumentException("Price cannot be less or equal than zero")
         }
