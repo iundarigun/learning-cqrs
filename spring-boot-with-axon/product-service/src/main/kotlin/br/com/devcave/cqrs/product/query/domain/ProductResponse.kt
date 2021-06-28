@@ -1,8 +1,8 @@
-package br.com.devcave.cqrs.product.event
+package br.com.devcave.cqrs.product.query.domain
 
 import java.math.BigDecimal
 
-data class ProductCreatedEvent(
+data class ProductResponse(
     val productId: String,
     val title: String,
     val price: BigDecimal,

@@ -1,7 +1,7 @@
-package br.com.devcave.cqrs.product.controller
+package br.com.devcave.cqrs.product.command.controller
 
-import br.com.devcave.cqrs.product.domain.ProductRequest
-import br.com.devcave.cqrs.product.domain.command.CreateProductCommand
+import br.com.devcave.cqrs.product.command.domain.ProductRequest
+import br.com.devcave.cqrs.product.command.domain.CreateProductCommand
 import org.axonframework.commandhandling.gateway.CommandGateway
 import org.slf4j.LoggerFactory
 import org.springframework.web.bind.annotation.PostMapping
@@ -12,7 +12,7 @@ import java.util.UUID
 
 @RestController
 @RequestMapping("products")
-class ProductController(
+class ProductCommandController(
     private val commandGateway: CommandGateway
 ) {
 

@@ -1,4 +1,4 @@
-package br.com.devcave.cqrs.product.domain
+package br.com.devcave.cqrs.product.command.domain
 
 import java.math.BigDecimal
 

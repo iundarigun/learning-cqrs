@@ -1,15 +1,18 @@
-package br.com.devcave.cqrs.product.domain.command
+package br.com.devcave.cqrs.product.command
 
-import br.com.devcave.cqrs.product.event.ProductCreatedEvent
+import br.com.devcave.cqrs.product.command.domain.CreateProductCommand
+import br.com.devcave.cqrs.product.core.event.ProductCreatedEvent
 import org.axonframework.commandhandling.CommandHandler
 import org.axonframework.eventsourcing.EventSourcingHandler
 import org.axonframework.modelling.command.AggregateIdentifier
 import org.axonframework.modelling.command.AggregateLifecycle
 import org.axonframework.spring.stereotype.Aggregate
+import org.slf4j.LoggerFactory
 import java.math.BigDecimal
 
 @Aggregate
 class ProductAggregate() {
+    private val logger = LoggerFactory.getLogger(javaClass)
 
     @AggregateIdentifier
     var productId: String? = null
@@ -19,6 +22,8 @@ class ProductAggregate() {
 
     @CommandHandler
     constructor(createProductCommand: CreateProductCommand) : this() {
+        logger.info("constructor, $createProductCommand")
+
         // validate create product command: This parts can be on request body validation ...
         if (createProductCommand.price <= BigDecimal.ZERO) {
             throw IllegalArgumentException("Price cannot be less or equal than zero")
@@ -33,11 +38,12 @@ class ProductAggregate() {
     }
 
     @EventSourcingHandler
-    fun on(productCreatedEvent: ProductCreatedEvent) {
-        productId = productCreatedEvent.productId
-        title = productCreatedEvent.title
-        price = productCreatedEvent.price
-        quantity = productCreatedEvent.quantity
+    fun on(event: ProductCreatedEvent) {
+        logger.info("on, $event")
+        productId = event.productId
+        title = event.title
+        price = event.price
+        quantity = event.quantity
     }
 }
 

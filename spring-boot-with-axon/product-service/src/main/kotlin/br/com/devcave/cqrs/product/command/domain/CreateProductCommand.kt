@@ -1,4 +1,4 @@
-package br.com.devcave.cqrs.product.domain.command
+package br.com.devcave.cqrs.product.command.domain
 
 import org.axonframework.modelling.command.TargetAggregateIdentifier
 import java.math.BigDecimal

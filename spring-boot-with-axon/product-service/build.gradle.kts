@@ -5,6 +5,7 @@ plugins {
 	id("io.spring.dependency-management") version "1.0.11.RELEASE"
 	kotlin("jvm") version "1.5.20"
 	kotlin("plugin.spring") version "1.5.20"
+	kotlin("plugin.jpa") version "1.5.20"
 }
 
 group = "br.com.devcave.cqrs.product"
@@ -18,7 +19,6 @@ repositories {
 val springCloudVersion = "2020.0.3"
 val swaggerVersion = "3.0.0"
 val axonVersion = "4.5.2"
-//val guavaVersion = "30.1.1-jre"
 
 dependencies {
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
@@ -29,7 +29,9 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
 	implementation("org.axonframework:axon-spring-boot-starter:$axonVersion")
 
-//	implementation("com.google.guava:guava:$guavaVersion")
+	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+//	implementation("org.flywaydb:flyway-core")
+	runtimeOnly("org.postgresql:postgresql")
 
 	implementation("io.springfox:springfox-boot-starter:$swaggerVersion")
 	implementation("io.springfox:springfox-swagger-ui:$swaggerVersion")
