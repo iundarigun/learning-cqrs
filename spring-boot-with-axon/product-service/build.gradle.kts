@@ -17,6 +17,8 @@ repositories {
 
 val springCloudVersion = "2020.0.3"
 val swaggerVersion = "3.0.0"
+val axonVersion = "4.5.2"
+//val guavaVersion = "30.1.1-jre"
 
 dependencies {
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
@@ -25,6 +27,9 @@ dependencies {
 
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
+	implementation("org.axonframework:axon-spring-boot-starter:$axonVersion")
+
+//	implementation("com.google.guava:guava:$guavaVersion")
 
 	implementation("io.springfox:springfox-boot-starter:$swaggerVersion")
 	implementation("io.springfox:springfox-swagger-ui:$swaggerVersion")
@@ -34,7 +39,7 @@ dependencies {
 
 dependencyManagement {
 	imports {
-		mavenBom("org.springframework.cloud:spring-cloud-dependencies:$springCloudVersion}")
+		mavenBom("org.springframework.cloud:spring-cloud-dependencies:$springCloudVersion")
 	}
 }
 
