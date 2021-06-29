@@ -8,6 +8,7 @@ import org.axonframework.modelling.command.AggregateIdentifier
 import org.axonframework.modelling.command.AggregateLifecycle
 import org.axonframework.spring.stereotype.Aggregate
 import org.slf4j.LoggerFactory
+import org.springframework.web.client.HttpClientErrorException
 import java.math.BigDecimal
 
 @Aggregate
@@ -30,6 +31,11 @@ class ProductAggregate() {
         }
         if (createProductCommand.title.isBlank()) {
             throw IllegalArgumentException("Title cannot be empty")
+        }
+
+        // Forcing error to see exception handler in action
+        if (createProductCommand.price.toLong() == 13L) {
+            throw IllegalArgumentException("Price is 13 and can not be. Forcing exception")
         }
 
         val event = createProductCommand.toProductCreatedEvent()
