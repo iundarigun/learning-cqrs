@@ -1,5 +1,6 @@
 package br.com.devcave.cqrs.product.command
 
+import br.com.devcave.cqrs.core.commands.ReserveProductCommand
 import br.com.devcave.cqrs.product.command.domain.CreateProductCommand
 import br.com.devcave.cqrs.product.core.event.ProductCreatedEvent
 import org.axonframework.commandhandling.CommandHandler
@@ -41,6 +42,14 @@ class ProductAggregate() {
         val event = createProductCommand.toProductCreatedEvent()
 
         AggregateLifecycle.apply(event)
+    }
+
+    @CommandHandler
+    fun handleReserveProductCommand(reserveProductCommand: ReserveProductCommand) {
+        logger.info("handle ReserveProductCommand, $reserveProductCommand")
+        if (requireNotNull(quantity) < reserveProductCommand.quantity) {
+            throw IllegalArgumentException("Insufficient number of items in stock")
+        }
     }
 
     @EventSourcingHandler

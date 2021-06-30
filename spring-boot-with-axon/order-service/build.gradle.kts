@@ -8,7 +8,7 @@ plugins {
 	kotlin("plugin.jpa") version "1.5.20"
 }
 
-group = "br.com.devcave.cqrs.product"
+group = "br.com.devcave.cqrs.order"
 
 java.sourceCompatibility = JavaVersion.VERSION_11
 

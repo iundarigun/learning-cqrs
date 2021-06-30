@@ -7,6 +7,13 @@ services:
       - POSTGRES_PASSWORD=product
     ports:
       - 5432:5432
+  database-orders:
+    image: postgres
+    environment:
+      - POSTGRES_USER=orders
+      - POSTGRES_PASSWORD=orders
+    ports:
+      - 5433:5432
   axon-server:
     image: axoniq/axonserver
     volumes:

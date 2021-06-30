@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: order-service
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5433/orders
+    username: orders
+    password: orders
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+    open-in-view: false
+    hibernate:
+      ddl-auto: update
+
+server:
+  port: 1981
+
+axon:
+  eventhandling:
+    processors:
+      order-group:
+        mode: subscribing
